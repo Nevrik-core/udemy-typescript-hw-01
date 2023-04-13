@@ -1,13 +1,17 @@
-const currRate = "1.05";
+const currRate: string = "1.05";
 
-const fetchCurr = (response: string) => {
-	const data = JSON.parse(response);
-	return data;
+const fetchCurr = (response: string): number => {
+    const data = JSON.parse(response);
+    return data;
 };
 
-function transferEurToUsd(available: boolean, amount: number, commission: number) {
+function transferEurToUsd(
+    available: boolean,
+    amount: number,
+    commission: number
+): void {
 	if (available) {
-		let res = fetchCurr(currRate) * amount * commission;
+		let res: number = fetchCurr(currRate) * amount * commission;
 		console.log(res);
 		// Или запись в элемент на странице вместо консоли
 	} else {
