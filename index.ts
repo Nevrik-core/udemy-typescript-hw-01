@@ -1,22 +1,41 @@
-const currRate: string = "1.05";
 
-const fetchCurr = (response: string): number => {
-    const data = JSON.parse(response);
-    return data;
-};
+// Перечисление с названием TypesOfMedia, которое включает строчные типы video, audio
 
-function transferEurToUsd(
-    available: boolean,
-    amount: number,
-    commission: number
-): void {
-	if (available) {
-		let res: number = fetchCurr(currRate) * amount * commission;
-		console.log(res);
-		// Или запись в элемент на странице вместо консоли
-	} else {
-		console.log("Сейчас обмен недоступен");
+// Перечисление с названием FormatsOfMedia, которое включает строчные видео-форматы: .mp4, .mov, .mkv, .flv, .webM
+
+// Описание интерфейса, в котором:
+// name - строка
+// type - один из перечисления выше
+// format = один из перечисления выше
+// subtitles - необязательное поле типа строка
+// marks - необязательное поле неизвестного типа
+
+function playMedia(
+	{ name, type, format, subtitles, marks }: интерфейс = {
+		name: "example",
+		type: один из типов,
+		format: один из форматов,
 	}
+): string {
+	let marksLog;
+
+    // Создать функционал, что если marks - это массив, то "сложить" все эелементы в одну строку и поместить в marksLog
+    // Если это строка, то просто поместить её в marksLog
+    // Если что-то другое - то marksLog = "Unsupported type of marks"
+    // Не допускайте any!
+
+	console.log(`Media ${name}${format} is ${type}
+    Marks: ${marksLog}
+    Subtitles: ${subtitles ?? "none"}`);
+    // помните что это за оператор ??
+
+	return "Media started";
 }
 
-transferEurToUsd(true, 500, 1.05);
+playMedia({
+	name: "WoW",
+	format: один из форматов,
+	type: один из типов,
+	subtitles: "hmhmhm hmhmhm doh",
+	marks: ["4:30", "5:40"],
+});
